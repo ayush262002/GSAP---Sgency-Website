@@ -1,0 +1,1099 @@
+/* ============================================================
+   DESIGN SYSTEM
+   60% — neutralBackground (#0A0A0A) — dominant canvas
+   30% — neutralText (#E8E8C8) — body, headings, structure
+   10% — primary (#FFFF66) — accents, CTA, highlights
+   RARE — secondary (#6B5BFF) — single-use ultra-rare pop
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Karma:wght@400;600&family=BenchNine:wght@400;700&display=swap');
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+    margin: 0;
+    padding: 0;
+    cursor: pointer !important;
+    overflow-x: hidden;
+    background: var(--neutralBackground);
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Tokens ──────────────────────────────────────────────── */
+:root {
+    /* 60/30/10 + rare */
+    --primary:            #FFFF66;
+    --secondary:          #6B5BFF;
+    --neutralText:        #E8E8C8;
+    --neutralBackground:  #0A0A0A;
+
+    /* Type scale — desktop (≥1280px base) */
+    --micro:    0.75rem;
+    --small:    1.5rem;
+    --medium:   2rem;
+    --large:    4rem;
+    --xlarge:   8rem;
+
+    /* Letter-spacing */
+    --microSpacing:  0.25rem;
+    --smallSpacing:  0.25rem;
+    --mediumSpacing: 0.25rem;
+    --largeSpacing:  1rem;
+    --xlargeSpacing: 0.5rem;
+
+    /* Line-heights */
+    --microVspacing:  2rem;
+    --smallVspacing:  2rem;
+    --mediumVspacing: 2rem;
+    --largeVspacing:  6rem;
+    --xlargeVspacing: 6rem;
+
+    /* Layout */
+    --componentgap: 1rem;
+    --sectiongap:   2rem;
+    --padding:      1rem;
+    --rounded:      2rem;
+
+    /* ── SECTION BREATHING GAPS ───────────────────────── */
+    /* Used on sections that are NOT pinned by GSAP ScrollTrigger.
+       Pinned sections handle their own spacing via the pin mechanics.
+       These values create the "air between chapters" feel. */
+    --breathgap:        12vh;   /* standard inter-section gap          */
+    --breathgap-large:  18vh;   /* before/after heavy visual sections  */
+
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+
+    /* Fonts */
+    --contentFont:   'Karma', sans-serif;
+    --HighlightFont: 'BenchNine', sans-serif;
+}
+
+/* ── Large screens (≥1600px) ─────── */
+@media (min-width: 1600px) {
+    :root {
+        --micro:    1.5rem;
+        --small:    3rem;
+        --medium:   4rem;
+        --large:    8rem;
+        --xlarge:   16rem;
+
+        --microSpacing:  0.4rem;
+        --smallSpacing:  0.4rem;
+        --mediumSpacing: 0.4rem;
+        --largeSpacing:  1.5rem;
+        --xlargeSpacing: 0.8rem;
+
+        --microVspacing:  3.5rem;
+        --smallVspacing:  3.5rem;
+        --mediumVspacing: 3.5rem;
+        --largeVspacing:  10rem;
+        --xlargeVspacing: 10rem;
+
+        --componentgap: 2rem;
+        --sectiongap:   4rem;
+        --padding:      2rem;
+        --rounded:      3rem;
+
+        --breathgap:       16vh;
+        --breathgap-large: 22vh;
+    }
+}
+
+/* ── Tablet / mobile overrides (≤1024px) ─────────────────── */
+@media (max-width: 1024px) {
+    :root {
+        --micro:    0.75rem;
+        --small:    1.125rem;
+        --medium:   1.5rem;
+        --large:    2.5rem;
+        --xlarge:   4.5rem;
+
+        --microSpacing:  0.1rem;
+        --smallSpacing:  0.1rem;
+        --mediumSpacing: 0.1rem;
+        --largeSpacing:  0.5rem;
+        --xlargeSpacing: 0.25rem;
+
+        --microVspacing:  1.5rem;
+        --smallVspacing:  1.5rem;
+        --mediumVspacing: 1.75rem;
+        --largeVspacing:  3.5rem;
+        --xlargeVspacing: 4.5rem;
+
+        --componentgap: 0.75rem;
+        --sectiongap:   1.25rem;
+        --padding:      0.875rem;
+        --rounded:      1.25rem;
+
+        --breathgap:       8vh;
+        --breathgap-large: 12vh;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --micro:    0.8rem;
+        --small:    1rem;
+        --medium:   1.25rem;
+        --large:    2rem;
+        --xlarge:   3.25rem;
+
+        --largeVspacing:  2.75rem;
+        --xlargeVspacing: 3.25rem;
+
+        --padding:   0.75rem;
+        --sectiongap: 1rem;
+        --rounded:   1rem;
+
+        --breathgap:       6vh;
+        --breathgap-large: 8vh;
+    }
+}
+
+/* ── Page-load overlay — prevents FOUC / animation glitch ── */
+/* JS removes this class once fonts + assets are ready */
+body.loading {
+    visibility: hidden;
+}
+
+/* ── Type utility classes ───────────────────────────────── */
+.micro {
+    font-size: var(--micro);
+    font-family: var(--contentFont);
+    letter-spacing: var(--microSpacing);
+    line-height: var(--microVspacing);
+    color: var(--neutralText);
+}
+
+.small {
+    font-size: var(--small);
+    font-family: var(--contentFont);
+    letter-spacing: var(--smallSpacing);
+    line-height: var(--smallVspacing);
+    color: var(--neutralText);
+    opacity: 0.6;
+}
+
+.medium {
+    font-size: var(--medium);
+    font-family: var(--contentFont);
+    letter-spacing: var(--mediumSpacing);
+    line-height: var(--mediumVspacing);
+    color: var(--neutralText);
+    opacity: 0.6;
+}
+
+.large {
+    font-size: var(--large);
+    font-family: var(--contentFont);
+    letter-spacing: var(--largeSpacing);
+    line-height: var(--largeVspacing);
+    color: var(--neutralText);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* xlarge — primary color (10%) */
+.xlarge {
+    font-size: var(--xlarge);
+    font-family: var(--HighlightFont);
+    letter-spacing: var(--xlargeSpacing);
+    line-height: var(--xlargeVspacing);
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.special {
+    font-size: var(--xlarge);
+    font-family: var(--HighlightFont);
+    letter-spacing: var(--xlargeSpacing);
+    line-height: var(--xlargeVspacing);
+    color: var(--neutralText);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* ── Links ───────────────────────────────────────────────── */
+a {
+    font-family: var(--contentFont);
+    color: var(--neutralText);
+    font-size: var(--small);
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+}
+a:hover { color: var(--primary); }
+
+li { list-style: none; }
+
+/* ── Nav ─────────────────────────────────────────────────── */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+    opacity: 0;
+    background: transparent;
+}
+
+.logo {
+    font-family: var(--HighlightFont);
+    color: var(--neutralText);
+    font-size: var(--small);
+    margin: var(--padding);
+}
+
+.nav-links {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--componentgap);
+    margin: var(--padding);
+}
+
+/* Hamburger */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    margin: var(--padding);
+    cursor: pointer;
+    z-index: 10;
+}
+.nav-hamburger span {
+    width: 28px;
+    height: 2px;
+    background: var(--neutralText);
+    transition: all 0.3s ease;
+    display: block;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.mobile-nav-drawer {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--neutralBackground);
+    z-index: 9;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sectiongap);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.mobile-nav-drawer.open {
+    opacity: 1;
+    pointer-events: all;
+}
+.mobile-nav-drawer a {
+    font-size: var(--large);
+    color: var(--neutralText);
+}
+.mobile-nav-drawer a:hover { color: var(--primary); }
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero {
+    width: 100vw;
+    height: 100vh;
+    background: var(--neutralBackground);
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: var(--sectiongap);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding-left: var(--sectiongap);
+}
+
+.hero-content h1,
+.hero-content h5 {
+    margin: 0;
+    opacity: 0;
+    text-align: center;
+}
+
+/* CTA */
+.strech-cta {
+    padding: var(--padding);
+    background: var(--secondary);
+    color: var(--neutralText);
+    border: none;
+    border-radius: var(--rounded);
+    text-transform: uppercase;
+    min-width: 20%;
+    font-size: var(--small);
+    font-family: var(--contentFont);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+.strech-cta:hover {
+    background: var(--primary);
+    color: var(--neutralBackground);
+    transform: scale(1.03);
+}
+
+/* Visit badge */
+#visit {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    cursor: pointer !important;
+    opacity: 0;
+}
+#arrow { color: var(--neutralBackground); }
+#sub   { font-family: var(--contentFont); z-index: 2; }
+
+.cont {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    opacity: 0;
+}
+
+/* Ambient blobs */
+.balls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--primary);
+    filter: blur(10px);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* Laptop graphic */
+.laptop {
+    width: 500px;
+    height: auto;
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transform-style: preserve-3d;
+}
+
+/* ── Service ─────────────────────────────────────────────── */
+.service {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    padding: var(--padding);
+    background: var(--neutralBackground);
+}
+
+.service p {
+    width: 300px;
+    color: var(--neutralText);
+}
+
+.service-img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 250px;
+    opacity: 0;
+    z-index: 2;
+}
+
+.service h2 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    text-transform: uppercase;
+    display: none;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    color: var(--primary);
+}
+
+
+/* ── Work ────────────────────────────────────────────────── */
+.work {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: var(--padding);
+    position: relative;
+    background: var(--neutralBackground);
+    /* Section breathing gap — gives the section visual air above it.
+       GSAP ScrollTrigger.pin() adds its own spacer div, so we use
+       margin-top only on non-pinned sections. For this section the
+       pin adds its own space, so no extra margin needed here —
+       the gap is handled by the service-section pin spacer above. */
+}
+
+.workHead {
+    color: var(--primary);
+    rotate: 90deg;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+}
+
+.workCaption {
+    color: var(--neutralText);
+    rotate: 90deg;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+}
+
+.workItem {
+    width: 50vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    opacity: 0.1;
+}
+
+.item-img-work {
+    width: 40%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.item-para-work {
+    width: 55%;
+    height: fit-content;
+    color: var(--neutralText);
+}
+
+/* ── Testimonial ─────────────────────────────────────────── */
+.testimonial {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    padding: var(--padding);
+    perspective: 1500px;
+    overflow: hidden;
+    background: var(--neutralBackground);
+    /* Gap before this section — it is NOT pinned, so it needs margin.
+       JS will add the gsap-spacer above work; testimonial follows freely. */
+    margin-top: var(--breathgap);
+}
+
+.testHead {
+    text-align: center;
+    color: var(--neutralText);
+    z-index: 10 !important;
+    width: 100vw;
+}
+
+.caption {
+    text-align: center;
+    color: var(--neutralText);
+    margin: 0;
+    margin-top: -3rem;
+    opacity: 0.6;
+}
+
+.testimonial-card {
+    background-color: var(--primary);
+    width: 350px;
+    padding: var(--padding);
+    border-radius: var(--rounded);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    transform: translate(-50%, 0%);
+    transition: box-shadow 0.2s ease;
+}
+.testimonial-card:hover {
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6);
+}
+
+.quote {
+    color: var(--neutralBackground);
+}
+
+.author-section {
+    display: flex;
+    align-items: center;
+    gap: var(--sectiongap);
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--neutralBackground);
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    color: var(--neutralBackground);
+    margin: 0 !important;
+    font-family: var(--HighlightFont);
+}
+
+.title {
+    color: var(--neutralBackground);
+    opacity: 0.7;
+    margin: 0 !important;
+    font-family: var(--HighlightFont);
+}
+
+/* ── Success Stories ─────────────────────────────────────── */
+.success {
+    width: 100vw;
+    /* height is intrinsic — the GSAP pin adds its own spacer.
+       We don't hardcode 150vh here so the Extra section below
+       sits in the natural document flow, not overlapping. */
+    height: 100vh;
+    box-sizing: border-box;
+    padding: var(--padding);
+    position: relative;
+    background: var(--neutralBackground);
+    /* Gap before success section */
+    margin-top: var(--breathgap);
+    overflow: hidden;   /* clip the stacked Sstory cards */
+}
+
+.Sstory {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-top: 2px solid var(--neutralText);
+    flex: 1;
+    padding: var(--padding) 0;
+    position: absolute;
+    /* FIX ISSUE 1 — must be flush with the section edge, not offset
+       by --padding. The section itself has padding: var(--padding),
+       so inner absolute children start at x=0 (after section padding).
+       We explicitly zero the horizontal inset so no side-shift occurs. */
+    left: 0;
+    right: 0;
+    /* Width spans the full padded interior */
+    width: 100%;
+    background-color: var(--neutralBackground);
+}
+
+.Stitle { flex: 0.3; color: var(--neutralText); }
+
+.Simg {
+    width: 250px;
+    height: 500px;
+    object-fit: cover;
+    flex: 0.3;
+    border-radius: 10px;
+}
+
+.Spara {
+    flex: 0.3;
+    opacity: 0.6;
+    color: var(--neutralText);
+}
+
+.story-container {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+
+.black{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--neutralBackground);
+    z-index: 10;
+}
+/* ── Extra — FLOW POSITIONED (Issue 1 fix) ───────────────── */
+/* Previously position:absolute inside .success caused a left-shift.
+   Extra is now a sibling section in normal document flow so it
+   starts exactly at the left edge of the viewport. */
+.Extra {
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: var(--neutralBackground);
+    box-sizing: border-box;
+    padding: var(--padding);
+    overflow: visible;   /* let children breathe */
+    overflow-x: hidden;
+    z-index: 7;
+    position: relative; /* ← changed from absolute; no more left-shift */
+    /* Gap above Extra */
+    margin-top: var(--breathgap-large);
+}
+.Extra::-webkit-scrollbar { display: none; }
+
+.extraHead {
+    width: 40%;
+    color: var(--neutralText);
+    text-transform: uppercase;
+}
+
+.extracaption {
+    width: 60%;
+    text-transform: uppercase;
+    color: var(--neutralText);
+    opacity: 0.55;
+}
+
+.scroll-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+}
+
+.imgScroll {
+    width: 100vw;
+    height: 700px;
+    position: relative;
+}
+
+.laterHead {
+    width: 40%;
+    color: var(--neutralText);
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.latercaption {
+    width: 60%;
+    text-transform: uppercase;
+    text-align: right;
+    color: var(--neutralText);
+    opacity: 0.55;
+}
+
+.end {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: var(--breathgap);
+}
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq {
+    width: 100%;           /* ← span only the parent container width */
+    box-sizing: border-box;
+    padding: 0;            /* Extra already has padding; avoid double indent */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: 1;
+    margin-top: var(--breathgap);
+    background: var(--neutralBackground);
+}
+
+.faqHead {
+    flex: 0.2;
+    text-align: center;
+    color: var(--neutralText);
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    width: 100%;
+    opacity: 0.8;
+    border-bottom: 2px solid var(--primary);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.headline:hover { opacity: 1; }
+
+.item-faq { width: 100%; }
+
+.ques {
+    color: var(--neutralText);
+}
+
+.box {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.faqPara {
+    opacity: 0.55;
+    display: none;
+    color: var(--neutralText);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: var(--padding);
+    background: var(--neutralBackground);
+    /* Gap above footer */
+    margin-top: var(--breathgap-large);
+}
+
+.footerHead {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--secondary);
+}
+
+.links-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--componentgap);
+}
+
+.links-section .nav {
+    color: var(--neutralBackground) !important;
+    font-weight: bolder !important;
+}
+
+.links-section .nav:hover {
+    color: var(--secondary) !important;
+    font-weight: bolder !important;
+}
+
+/* ── Intro animator bars ─────────────────────────────────── */
+.animator {
+    position: fixed;
+    top: 0;
+    width: calc(100vw / 5);
+    height: 100vh;
+    z-index: 100;
+}
+
+
+/* =============================================================
+   TABLET & MOBILE OVERRIDES  (≤1024px)
+============================================================= */
+@media (max-width: 1024px) {
+
+    /* Nav */
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .mobile-nav-drawer { display: flex; }
+
+    /* Hero */
+    .hero-content {
+        flex-direction: column;
+        padding-left: 0;
+        gap: var(--componentgap);
+        width: 90vw;
+        text-align: center;
+    }
+
+    .laptop { display: none !important; }
+
+    .balls { width: 18px; height: 18px; }
+
+    #visit {
+        position: static;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 1 !important;
+    }
+    .cont {
+        position: static;
+        opacity: 1 !important;
+    }
+
+    /* Service */
+    .service {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: var(--sectiongap);
+        padding: var(--padding);
+        padding-top: calc(var(--padding) * 4);
+    }
+
+    .service p { width: 100%; }
+
+    .service-img {
+        position: static;
+        transform: none;
+        width: 80vw;
+        height: auto;
+        max-height: 220px;
+        object-fit: cover;
+        opacity: 1 !important;
+        border-radius: var(--rounded);
+        margin: 0 auto;
+        display: block;
+    }
+
+    .service h2 {
+        position: static;
+        transform: none;
+        display: block !important;
+        opacity: 1 !important;
+        text-align: left;
+        width: 100%;
+        color: var(--primary);
+    }
+
+    .left {
+        display: block !important;
+        opacity: 1 !important;
+        width: 100%;
+    }
+
+    /* Work */
+    .work {
+        height: auto;
+        min-height: auto;
+        overflow: visible;
+        padding-top: calc(var(--padding) * 3);
+        position: relative;
+        margin-top: var(--breathgap);
+    }
+
+    .workHead,
+    .workCaption {
+        position: absolute;
+        rotate: 90deg;
+        transform: translateY(-50%);
+        top: 0;
+        left: 0;
+        display: block;
+        opacity: 1;
+        margin-bottom: var(--componentgap);
+    }
+
+    .workHead {
+        color: var(--primary) !important;
+    }
+
+    .workItem {
+        position: static;
+        transform: none;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        gap: var(--sectiongap);
+        opacity: 1 !important;
+        padding: var(--sectiongap) 0;
+        border-bottom: 1px solid rgba(232, 232, 200, 0.15);
+        overflow: hidden;
+    }
+
+    .item-img-work {
+        width: 100%;
+        height: 200px;
+        aspect-ratio: unset;
+    }
+
+    .item-para-work { width: 100%; }
+
+    /* Testimonials */
+    .testimonial {
+        height: auto;
+        min-height: 100vh;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding-bottom: calc(var(--padding) * 4);
+        perspective: none;
+        margin-top: var(--breathgap);
+    }
+    .testimonial::-webkit-scrollbar { display: none; }
+
+    .testimonial-card {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none !important;
+        rotate: none !important;
+        width: 85vw;
+        min-height: auto;
+        margin: var(--sectiongap) auto 0;
+        display: flex;
+    }
+
+    /* Success stories */
+    .success {
+        height: auto;
+        min-height: auto;
+        overflow: visible;
+        background-color: var(--neutralBackground) !important;
+        margin-top: var(--breathgap);
+    }
+
+    .Sstory {
+        position: static;
+        flex-direction: column;
+        gap: var(--sectiongap);
+        border-top: 1px solid rgba(232, 232, 200, 0.2);
+        padding: var(--sectiongap) 0;
+        background-color: var(--neutralBackground) !important;
+        /* reset the absolute overrides */
+        left: auto;
+        right: auto;
+        width: 100%;
+    }
+
+    .Stitle,
+    .Spara { flex: 1; width: 100%; }
+
+    .Simg {
+        width: 100%;
+        height: 280px;
+        flex: unset;
+    }
+
+    /* Extra */
+    .Extra {
+        position: static;
+        top: auto;
+        margin-top: var(--breathgap);
+    }
+
+    .extraHead,
+    .laterHead {
+        width: 100%;
+        text-align: left;
+    }
+
+    .extracaption,
+    .latercaption { width: 100%; }
+
+    .scroll-img {
+        position: static;
+        opacity: 1 !important;
+        width: 48%;
+        height: 180px;
+        display: inline-block;
+        margin: 1%;
+        border-radius: 12px;
+    }
+
+    .imgScroll {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* FAQ */
+    .faq {
+        height: auto;
+        min-height: auto;
+        flex-direction: column;
+        gap: var(--sectiongap);
+        margin-top: var(--breathgap);
+    }
+
+    .faqHead { flex: none; text-align: left; }
+    .box     { flex: none; width: 100%; }
+
+    /* Footer */
+    .footer {
+        height: auto;
+        min-height: 60vh;
+        flex-direction: column;
+        gap: var(--sectiongap);
+        padding-bottom: calc(var(--padding) * 3);
+        margin-top: var(--breathgap);
+    }
+
+    .footerHead {
+        position: static;
+        transform: none;
+    }
+}
+
+/* ── Small phone tweaks ──────────────────────────────────── */
+@media (max-width: 480px) {
+    .testimonial-card { width: 92vw; }
+
+    .scroll-img {
+        width: 100%;
+        margin: 0;
+        margin-bottom: var(--componentgap);
+    }
+
+    .strech-cta { width: 100%; min-width: unset; }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Digital Agency</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=BenchNine:wght@300;400;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
+        <script src="index.js" defer></script>
+    </head>
+
+    <!--
+        ISSUE 4 FIX — body.loading keeps visibility:hidden (see styles.css)
+        until JS page-ready guard resolves. This prevents any flash of
+        partially-rendered or font-swapped content at page load.
+    -->
+    <body class="loading">
+        
+        <img src="Assets/laptop.png" alt="Hero Image" class="laptop"/>
+
+        <!--Navbar-->
+        <nav>
+            <div class="logo">DEVBYAG</div>
+            <ul class="nav-links">
+                <li><a href="#home"        class="micro">Home</a></li>
+                <li><a href="#services"    class="micro">Services</a></li>
+                <li><a href="#story"       class="micro">Story</a></li>
+                <li><a href="#testimonial" class="micro">Testimonials</a></li>
+                <li><a href="#work"        class="micro">Work</a></li>
+                <li><a href="#contact"     class="micro">Contact</a></li>
+            </ul>
+            <!-- Hamburger for mobile -->
+            <div class="nav-hamburger" aria-label="Open navigation menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- Mobile nav drawer -->
+        <div class="mobile-nav-drawer" role="navigation" aria-label="Mobile navigation">
+            <a href="#home"        class="large">Home</a>
+            <a href="#services"    class="large">Services</a>
+            <a href="#story"       class="large">Story</a>
+            <a href="#testimonial" class="large">Testimonials</a>
+            <a href="#work"        class="large">Work</a>
+            <a href="#contact"     class="large">Contact</a>
+        </div>
+
+        <!-- ════════════ HERO ════════════ -->
+        <div class="hero" name="home">
+            <div class="hero-content">
+                <h1 class="xlarge">DEV</h1>
+                <h5 class="xlarge">BY</h5>
+                <h1 class="xlarge">AG</h1>
+            </div>
+            <button id="visit" class="strech-cta">See our work <i class="fas fa-angle-right" id="arrow"></i></button>
+            <div class="cont">
+                <p class="small" id="sub">Crafting bold digital<br/>experiences that convert.</p>
+            </div>
+
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+            <div class="balls"></div>
+        </div>
+
+        <!-- ════════════ SERVICES ════════════ -->
+        <div class="service" id="services">
+            <p class="small">We craft scalable brands, websites, and digital experiences.</p>
+            <p class="small" style="text-align: right;">Design, development, strategy, and growth for modern businesses.</p>
+            
+            <img src="Assets/websute.jpeg" class="service-img" />
+            <img src="Assets/gsap.png"     class="service-img" />
+            <img src="Assets/gd.jpeg"      class="service-img" />
+            <img src="Assets/store.jpeg"   class="service-img" />
+
+            <h2 class="xlarge left">Graphic Design</h2>
+            <h2 class="xlarge left">Shopify Store</h2>
+            <h2 class="xlarge left">Website Development</h2>
+            <h2 class="xlarge left">GSAP Landing Page</h2>
+        </div>
+
+        <!-- ════════════ WORK ════════════ -->
+     
+            <div class="work" id="work" name="work">
+            <h1 class="xlarge workHead">DEVBYAD</h1>
+            <p class="medium workCaption">Work Samples by</p>
+            <div class="workItem">
+                <img src="/Assets/office3.jpeg" class="item-img-work"/>
+                <p class="medium item-para-work">Created for — {Avintellact}</p>
+            </div>
+            <div class="workItem">
+                <img src="/Assets/office3.jpeg" class="item-img-work"/>
+                <p class="medium item-para-work">Created for — {Avintellact}</p>
+            </div>
+            <div class="workItem">
+                <img src="/Assets/office3.jpeg" class="item-img-work"/>
+                <p class="medium item-para-work">Created for — {Avintellact}</p>
+            </div>
+            <div class="workItem">
+                <img src="/Assets/office3.jpeg" class="item-img-work"/>
+                <p class="medium item-para-work">Created for — {Avintellact}</p>
+            </div>
+            <div class="workItem">
+                <img src="/Assets/office3.jpeg" class="item-img-work"/>
+                <p class="medium item-para-work">Created for — {Avintellact}</p>
+            </div>
+        </div>
+
+        <!-- ════════════ TESTIMONIALS ════════════ -->
+        <div class="testimonial" id="testimonial" name="testimonial">
+            <h1 class="xlarge testHead">Testimonials</h1>
+            <h5 class="small caption">What our clients say about us</h5>
+            
+            <div class="testimonial-card">
+                <p class="micro quote">
+                    "I organize my entire life in Stackflow. From meeting notes to grocery lists." "I organize my entire life in Stackflow. From meeting notes to grocery lists."
+                </p>
+                <div class="author-section">
+                    <img src="Assets/store.jpeg" alt="Amira Benali" class="profile-img">
+                    <div class="author-info">
+                        <h4 class="small name">Amira Benali</h4>
+                        <p class="micro title">Brand Director, Paloma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="micro quote">
+                    "I organize my entire life in Stackflow. From meeting notes to grocery lists." "I organize my entire life in Stackflow. From meeting notes to grocery lists."
+                </p>
+                <div class="author-section">
+                    <img src="Assets/store.jpeg" alt="Amira Benali" class="profile-img">
+                    <div class="author-info">
+                        <h4 class="small name">Amira Benali</h4>
+                        <p class="micro title">Brand Director, Paloma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="micro quote">
+                    "I organize my entire life in Stackflow. From meeting notes to grocery lists." "I organize my entire life in Stackflow. From meeting notes to grocery lists."
+                </p>
+                <div class="author-section">
+                    <img src="Assets/store.jpeg" alt="Amira Benali" class="profile-img">
+                    <div class="author-info">
+                        <h4 class="small name">Amira Benali</h4>
+                        <p class="micro title">Brand Director, Paloma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="micro quote">
+                    "I organize my entire life in Stackflow. From meeting notes to grocery lists." "I organize my entire life in Stackflow. From meeting notes to grocery lists."
+                </p>
+                <div class="author-section">
+                    <img src="Assets/store.jpeg" alt="Amira Benali" class="profile-img">
+                    <div class="author-info">
+                        <h4 class="small name">Amira Benali</h4>
+                        <p class="micro title">Brand Director, Paloma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="micro quote">
+                    "I organize my entire life in Stackflow. From meeting notes to grocery lists." "I organize my entire life in Stackflow. From meeting notes to grocery lists."
+                </p>
+                <div class="author-section">
+                    <img src="Assets/store.jpeg" alt="Amira Benali" class="profile-img">
+                    <div class="author-info">
+                        <h4 class="small name">Amira Benali</h4>
+                        <p class="micro title">Brand Director, Paloma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════ SUCCESS STORIES ════════════ -->
+        <!--
+            ISSUE 1 FIX — .Extra, .faq, .footer are now SIBLINGS of
+            .success (not children / absolutely-positioned inside it).
+            Previously .Extra had position:absolute inside .success
+            which caused a left-shift equal to --padding (1rem).
+            Moving them here into the normal document flow means they
+            always start exactly at the left edge of the viewport.
+        -->
+        <div class="success" id="story" name="story">
+            <div class="black"></div>
+            <h1 class="xlarge testHead">Our Success Story</h1>
+            <h5 class="small caption">OUR PRINCIPLES BRING YOUR DREAM STAYS TO LIFE</h5>
+            <div class="story-container">
+                <div class="Sstory">
+                    <h5 class="medium Stitle">MAKE IT MEMORABLE</h5>
+                    <img src="Assets/office.png" class="Simg" />
+                    <p class="small Spara">Every detail is designed to surprise, to create powerful moments and unforgettable team memories.</p>
+                </div>
+                <div class="Sstory">
+                    <h5 class="medium Stitle">MAKE IT MEMORABLE</h5>
+                    <img src="Assets/office2.jpeg" class="Simg" />
+                    <p class="small Spara">Every detail is designed to surprise, to create powerful moments and unforgettable team memories.</p>
+                </div>
+                <div class="Sstory">
+                    <h5 class="medium Stitle">MAKE IT MEMORABLE</h5>
+                    <img src="Assets/office3.jpeg" class="Simg" />
+                    <p class="small Spara">Every detail is designed to surprise, to create powerful moments and unforgettable team memories.</p>
+                </div>
+                <div class="Sstory">
+                    <h5 class="medium Stitle">MAKE IT MEMORABLE</h5>
+                    <img src="Assets/office4.jpeg" class="Simg" />
+                    <p class="small Spara">Every detail is designed to surprise, to create powerful moments and unforgettable team memories.</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- ════════════ EXTRA — sibling, NOT child of .success ════════════ -->
+        <div class="Extra">
+            <h1 class="xlarge extraHead">DEVBYAG: More than just a agency</h1>
+            <p class="small extracaption">We at DEVBYAG supports WFH where your home setup will be same as of office.</p>
+            <div class="imgScroll">
+                <img src="Assets/team.png"     class="scroll-img" />
+                <img src="Assets/office.jpeg"  class="scroll-img" />
+                <img src="Assets/office2.jpeg" class="scroll-img" />
+                <img src="Assets/thought.jpeg" class="scroll-img" />
+                <img src="Assets/office5.jpeg" class="scroll-img" />
+                <img src="Assets/office4.jpeg" class="scroll-img" />
+                <img src="Assets/office3.jpeg" class="scroll-img" />
+            </div>
+            <div class="end">
+                <p class="small latercaption">We at DEVBYAG supports WFH where your home setup will be same as of office.</p>
+                <h1 class="xlarge laterHead">DEVBYAG: More than just a agency</h1>
+            </div>
+
+            <!-- ════════════ FAQ — inside Extra but now flow-positioned ════════════ -->
+            <div class="faq">
+                <h1 class="xlarge extraHead faqHead">FAQ</h1>
+                <div class="box">
+                    <div class="item-faq">
+                        <div class="headline"><h5 class="medium ques">How to discuss about a project?</h5><i class="fa-solid fa-plus"></i></div>
+                        <p class="small faqPara">Lorem ipsum dolor sit amet consectetur adipisicing elit. In cumque beatae ex blanditiis odio! Optio assumenda nemo sunt nulla debitis? Ipsam earum saepe in aut harum dolores nostrum molestias delectus?</p>
+                    </div>
+                    <div class="item-faq">
+                        <div class="headline"><h5 class="medium ques">How to discuss about a project?</h5><i class="fa-solid fa-plus"></i></div>
+                        <p class="small faqPara">Lorem ipsum dolor sit amet consectetur adipisicing elit. In cumque beatae ex blanditiis odio! Optio assumenda nemo sunt nulla debitis? Ipsam earum saepe in aut harum dolores nostrum molestias delectus?</p>
+                    </div>
+                    <div class="item-faq">
+                        <div class="headline"><h5 class="medium ques">How to discuss about a project?</h5><i class="fa-solid fa-plus"></i></div>
+                        <p class="small faqPara">Lorem ipsum dolor sit amet consectetur adipisicing elit. In cumque beatae ex blanditiis odio! Optio assumenda nemo sunt nulla debitis? Ipsam earum saepe in aut harum dolores nostrum molestias delectus?</p>
+                    </div>
+                    <div class="item-faq">
+                        <div class="headline"><h5 class="medium ques">How to discuss about a project?</h5><i class="fa-solid fa-plus"></i></div>
+                        <p class="small faqPara">Lorem ipsum dolor sit amet consectetur adipisicing elit. In cumque beatae ex blanditiis odio! Optio assumenda nemo sunt nulla debitis? Ipsam earum saepe in aut harum dolores nostrum molestias delectus?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════ FOOTER — sibling, NOT child of .success ════════════ -->
+        <div class="footer" id="contact">
+            <div class="links-section">
+                <a href="#home"        class="micro nav">Home</a>
+                <a href="#services"    class="micro nav">Services</a>
+                <a href="#story"       class="micro nav">Story</a>
+                <a href="#testimonial" class="micro nav">Testimonials</a>
+                <a href="#work"        class="micro nav">Work</a>
+            </div>
+            <div class="links-section">
+                <a href="#map" class="micro nav">K-4 Katariya colony, Ganesh Nagar, Jaipur, India, 302019</a>
+            </div>
+            <div class="links-section">
+                <a href="#insta"    class="small nav"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#youtube"  class="small nav"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#facebook" class="small nav"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <h1 class="xlarge footerHead">DEVBYAG</h1>
+        </div>
+
+    </body>
+    
+</html>
